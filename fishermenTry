@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+vector<int> getNearest(int gatePos,vector<bool>& occupied,int N){
+
+    vector<pair<int,int>> nearest;
+    for(int i=1;i<=N;i++){
+        if(!occupied[i]){
+            nearest.push_back({abs(i-gatePos)+1,i});
+        }
+    }
+
+    sort(nearest.begin(),nearest.end());
+    vector<int> ans;
+    for(auto it:nearest){
+        ans.push_back(it.second);
+    }
+    return ans;
+}
+
+void assign_fishermen(int gate_id,int fisherPlaced,int N,vector<bool>& occupied,vector<int>& gates,vector<int>& num, int& ans,int currSum){
+    if(currSum>=ans){
+        return;
+    }
+
+    int gatePos=gates[perm[gate_id]];
+    int total=num[perm[gate_id]];
+
+    if(fisherPlaced==total){
+        if(gate_id==2){
+            ans=min(ans,currSum);
+            return;
+        }
+
+        assign_fishermen(gate_id+1,0,N,occupied,gates,num,ans,currSum);
+        return;
+    }
+
+    vector<int> nearest=getNearest(gatePos,occupied,N);
+
+    int minDist=abs(nearest[0]-gatePos)+1;
+
+    vector<int> choices;
+    for(int i:nearest){
+        if((abs(i-gatePos)+1)==minDist){
+            choices.push_back(i);
+        }
+        else{
+            break;
+        }
+    }
+
+    for(int i:choices){
+        occupied[i]=true;
+        assign_fishermen(gate_id,fisherPlaced+1,N,occupied,gates,num,ans,currSum+abs(i-gatePos)+1);
+        occupied[i]=false;
+    }
+}
+
+int main(){
+    int N;
+    cin>>N;
+
+    vector<int> gates(3),num(3);
+    for(int i=0;i<3;i++){
+        cin>>gates[i];
+    }
+
+    for(int i=0;i<3;i++){
+        cin>>num[i];
+    }
+
+    vector<int> perm(3)={0,1,2};
+
+    int ans=INT_MAX;
+
+    do{
+        vector<bool> occupied(N+1,false);
+        assign_fishermen()
+    }while(next_permutation(perm.begin(),perm.end()));
+
+    cout<<ans<<endl;
+    return 0;
+}

@@ -35,3 +35,22 @@ int main(){
     }
     return 0;
 }
+
+/*
+8
+a12b3c4
+x1x2x10
+p0q5r0
+z9y
+b100a1b2
+m12n3m4n5
+a1A2a3
+
+a 12 b 3 c 4
+x 13
+q 5
+z 9
+a 1 b 102
+m 16 n 8
+A 2 a 4
+*/

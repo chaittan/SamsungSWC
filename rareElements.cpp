@@ -102,8 +102,9 @@ int main(){
         int ans=1e9;
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
-                int longestDist=-1;
+                
                 if(arr[i][j]==1){
+                    int longestDist=-1;
                     for(int k=0;k<c;k++){
                         int rx=rarearr[k].x;
                         int ry=rarearr[k].y;

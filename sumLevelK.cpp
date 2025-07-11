@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <sstream>
+
 #include <cctype>
 #include <algorithm>
 using namespace std;
@@ -14,7 +14,7 @@ int main() {
 
     vector<pair<int, int>> nodes;  // {level, value}
     int level = 0;
-    size_t i = 0;
+    int i = 0;
 
     while (i < treeStr.length()) {
         char ch = treeStr[i];
@@ -26,7 +26,7 @@ int main() {
             level--;
             i++;
         } else if (isdigit(ch) || ch == '-') {
-            size_t start = i;
+            int start = i;
             while (i < treeStr.length() && (isdigit(treeStr[i]) || treeStr[i] == '-')) {
                 i++;
             }

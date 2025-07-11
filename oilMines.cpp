@@ -22,7 +22,7 @@ void f(int i, vector<int>& mines, vector<bool>& visited, int minV, int maxV,
     int j = (i + 1) % m;
 
     // Option 1: continue adding to current partition
-    f(j, mines, visited, minV, maxV, currSum + mines[i], compDone, ans, m, c);
+    f(j, mines, visited, minV, maxV, currSum + mines[i], compDone, ans, m,  c);
 
     // Option 2: start a new partition
     minV = min(minV, currSum);
